@@ -3,6 +3,7 @@ package controller;
 import java.util.Scanner;
 
 public class Validate {
+    public Validate(){}
     public  int checkInt() {
         Scanner checkAge = new Scanner(System.in);
         int age;

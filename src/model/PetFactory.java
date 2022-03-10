@@ -1,11 +1,9 @@
 package model;
 
 import controller.Validate;
-import view.Client;
 
 public class PetFactory {
     private static Validate validate = new Validate();
-
     private PetFactory() {
     }
 
