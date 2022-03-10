@@ -4,6 +4,7 @@ import controller.PetManager;
 import controller.Validate;
 import model.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,6 +19,8 @@ public class Client {
             System.out.println("Menu");
             System.out.println("1. Add new pet");
             System.out.println("2. Show all pet");
+            System.out.println("3. Edit Pet");
+            System.out.println("4. Sort Pet");
             System.out.println("0. Exit");
             choiceMain = inputChoiceMain.nextInt();
             switch (choiceMain) {
@@ -26,6 +29,9 @@ public class Client {
                     break;
                 case 2:
                     showAllPet();
+                    break;
+                case 3:
+                    editPetByID();
                     break;
                 case 0:
                     System.exit(0);
@@ -54,7 +60,7 @@ public class Client {
         }
     }
 
-    public static void ditPetById() {
+    public static void editPetByID() {
         System.out.println("Input Pet's id need edit: ");
         String id = validate.checkStringNotNull();
         int check = -1;
@@ -176,6 +182,13 @@ public class Client {
                 Mouse editMouse = new Mouse(editId, editName, editAge, editGender, editWeight, editColor, newBreed, editPrice, editSize);
                 PetManager.editPetByIndex(index, editMouse);
             }
+        }
+    }
+    public static void sortPetByPrice (){
+        Collections.sort(petListClient);
+        for (Pet pet: petListClient
+             ) {
+            System.out.println(pet);
         }
     }
 }

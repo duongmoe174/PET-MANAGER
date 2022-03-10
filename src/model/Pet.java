@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Pet implements Serializable {
+public class Pet implements Serializable, Comparable<Pet> {
     private String id;
     private String name;
     private int age;
@@ -102,6 +102,11 @@ public class Pet implements Serializable {
                 ", breed=" + breed.nameBreed +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Pet o) {
+        return (this.getAge() - o.getAge());
     }
 }
 
