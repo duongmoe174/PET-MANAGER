@@ -236,4 +236,19 @@ public class Client {
             }
         }
     }
+
+    public static void sortMouseByRealMoney(){
+        Collections.sort(petListClient, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                return (int) (((Mouse) o1).getRealMoney() - ((Mouse) o2).getRealMoney());
+            }
+        });
+        for (Pet e: petListClient
+        ) {
+            if (e instanceof Mouse) {
+                System.out.println(e);
+            }
+        }
+    }
 }
