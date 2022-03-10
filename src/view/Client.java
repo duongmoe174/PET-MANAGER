@@ -22,6 +22,7 @@ public class Client {
             System.out.println("2. Show all pet");
             System.out.println("3. Edit Pet");
             System.out.println("4. Sort Pet");
+            System.out.println("5. Remove Pet");
             System.out.println("0. Exit");
             choiceMain = inputChoiceMain.nextInt();
             switch (choiceMain) {
@@ -35,7 +36,42 @@ public class Client {
                     editPetByID();
                     break;
                 case 4:
-                    sortPetByPrice();
+                    int choiceCase4 = -1;
+                    Scanner inputCase4 = new Scanner(System.in);
+                    while (choiceCase4 != 0) {
+                        System.out.println("1. Sort Pet by Age");
+                        System.out.println("2. Sort Pet by Price");
+                        System.out.println("3. Sort Cat by real money");
+                        System.out.println("4. Sort Dog by real money");
+                        System.out.println("5. Sort Mouse by real money");
+                        System.out.println("0. Return");
+                        choiceCase4 = inputCase4.nextInt();
+                        switch (choiceCase4) {
+                            case 1:
+                                sortPetByAge();
+                                break;
+                            case 2:
+                                sortPetByPrice();
+                                break;
+                            case 3:
+                                sortCatByRealMoney();
+                                break;
+                            case 4:
+                                sortDogByRealMoney();
+                                break;
+                            case 5:
+                                sortMouseByRealMoney();
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                System.err.println("Please let's choose one");
+                        }
+                    }
+                    break;
+                case 5:
+                    removePetByIndex();
+                    break;
                 case 0:
                     System.exit(0);
                 default:
@@ -250,5 +286,12 @@ public class Client {
                 System.out.println(e);
             }
         }
+    }
+
+    public static void removePetByIndex () {
+        System.out.println("Input Pet's id need remove");
+        String id = validate.checkStringNotNull();
+        int index = PetManager.getPetById(id);
+        PetManager.deletePet(index);
     }
 }
