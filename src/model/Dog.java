@@ -37,12 +37,15 @@ public class Dog extends Pet implements Discount{
     @Override
     public double getRealMoney() {
         double total = 0;
-        int totalYear = getBreed().longevity - getAge();
-        if (totalYear > 0 && totalYear <= 20) {
+        int percentAge = getAge() / getBreed().longevity * 100;
+        if (percentAge <= 10) {
+            total = getPrice() - getPrice()/100*10;
+        }
+        if(percentAge <= 40 && percentAge > 10) {
             total = getPrice() - getPrice()/100*30;
         }
-        if(totalYear > 20  && totalYear <= 40) {
-            total = getPrice() - getPrice()/100*10;
+        else if (percentAge > 40) {
+            total = getPrice() - getPrice()/100*50;
         }
         return total;
     }
