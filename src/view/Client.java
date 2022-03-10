@@ -5,6 +5,7 @@ import controller.Validate;
 import model.*;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,6 +34,8 @@ public class Client {
                 case 3:
                     editPetByID();
                     break;
+                case 4:
+                    sortPetByPrice();
                 case 0:
                     System.exit(0);
                 default:
@@ -184,11 +187,53 @@ public class Client {
             }
         }
     }
-    public static void sortPetByPrice (){
+    public static void sortPetByAge (){
         Collections.sort(petListClient);
         for (Pet pet: petListClient
              ) {
             System.out.println(pet);
+        }
+    }
+    public static void sortPetByPrice () {
+        Collections.sort(petListClient, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        for (Pet e: petListClient
+             ) {
+            System.out.println(e);
+        }
+    }
+
+    public static void sortCatByRealMoney(){
+        Collections.sort(petListClient, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                return (int) (((Cat) o1).getRealMoney() - ((Cat) o2).getRealMoney());
+            }
+        });
+        for (Pet e: petListClient
+             ) {
+            if (e instanceof Cat) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void sortDogByRealMoney(){
+        Collections.sort(petListClient, new Comparator<Pet>() {
+            @Override
+            public int compare(Pet o1, Pet o2) {
+                return (int) (((Dog) o1).getRealMoney() - ((Dog) o2).getRealMoney());
+            }
+        });
+        for (Pet e: petListClient
+        ) {
+            if (e instanceof Dog) {
+                System.out.println(e);
+            }
         }
     }
 }
