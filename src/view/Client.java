@@ -72,6 +72,7 @@ public class Client {
                 case 5:
                     removePetByIndex();
                     break;
+                case 6:
                 case 0:
                     System.exit(0);
                 default:

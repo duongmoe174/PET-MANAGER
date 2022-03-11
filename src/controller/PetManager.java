@@ -1,7 +1,5 @@
 package controller;
 
-import model.Breed;
-import model.Cat;
 import model.Pet;
 import storage.IPetData;
 import storage.PetFromBinaryFile;

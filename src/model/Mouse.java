@@ -1,6 +1,6 @@
 package model;
 
-public class Mouse extends Pet implements Discount {
+public class Mouse extends Pet implements Discount{
     private double size;
 
     public Mouse() {

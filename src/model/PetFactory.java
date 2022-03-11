@@ -1,9 +1,18 @@
 package model;
 
 import controller.Validate;
+import storage.IPetData;
+import storage.PetFromBinaryFile;
+import view.Client;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PetFactory {
     private static Validate validate = new Validate();
+    public static IPetData petFactoryData = new PetFromBinaryFile();
+    public static ArrayList<Pet> petFactoryList = petFactoryData.readfile();
+
     private PetFactory() {
     }
 
@@ -131,7 +140,7 @@ public class PetFactory {
         System.out.println("Input size: ");
         double size = validate.checkDouble();
 
-        Mouse mouse = new Mouse(id, name, age, gender, weight,color,breed, price, size);
+        Mouse mouse = new Mouse(id, name, age, gender, weight, color, breed, price, size);
         return mouse;
     }
 }
