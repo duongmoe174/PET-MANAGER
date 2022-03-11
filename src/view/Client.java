@@ -1,9 +1,11 @@
 package view;
 
+import controller.CustomerManager;
 import controller.PetManager;
 import controller.Validate;
 import model.*;
 
+import java.sql.SQLOutput;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.Scanner;
 
 public class Client {
     private static List<Pet> petListClient = PetManager.petList;
+    private static List<Customer> customerListClient = CustomerManager.customerList;
+
     private static Validate validate = new Validate();
 
     public static void main(String[] args) {
@@ -128,7 +132,7 @@ public class Client {
                 System.out.println("Edit color: " + "(" + petListClient.get(index).getColor() + ")");
                 String editColor = validate.checkStringNotNull();
 
-                System.out.println("Edit name of breed: " + "(" + petListClient.get(index).getBreed().getNameBreed()+ ")");
+                System.out.println("Edit name of breed: " + "(" + petListClient.get(index).getBreed().getNameBreed() + ")");
                 String editNameBreed = validate.checkStringNotNull();
 
                 System.out.println("Edit longevity: " + "(" + petListClient.get(index).getBreed().getLongevity() + ")");
@@ -137,7 +141,7 @@ public class Client {
                 Breed newBreed = new Breed(editNameBreed, editLongevity);
 
                 System.out.println("Edit price: " + "(" + petListClient.get(index).getPrice() + ")");
-               double editPrice = validate.checkDouble();
+                double editPrice = validate.checkDouble();
 
                 System.out.println("Edit type of leg: " + "(" + ((Cat) petListClient.get(index)).getTypeOfLeg() + ")");
                 String editLeg = validate.checkStringNotNull();
@@ -145,7 +149,7 @@ public class Client {
                 System.out.println("Edit type of hair: " + "(" + ((Cat) petListClient.get(index)).getTypeOfHair() + ")");
                 String editHair = validate.checkStringNotNull();
 
-                Cat editCat = new Cat(editId, editName, editAge, editGender, editWeight, editColor, newBreed, editPrice, editLeg, editHair );
+                Cat editCat = new Cat(editId, editName, editAge, editGender, editWeight, editColor, newBreed, editPrice, editLeg, editHair);
                 PetManager.editPetByIndex(index, editCat);
             }
             if (petListClient.get(index) instanceof Dog) {
@@ -168,7 +172,7 @@ public class Client {
                 System.out.println("Edit color: " + "(" + petListClient.get(index).getColor() + ")");
                 String editColor = validate.checkStringNotNull();
 
-                System.out.println("Edit name of breed: " + "(" + petListClient.get(index).getBreed().getNameBreed()+ ")");
+                System.out.println("Edit name of breed: " + "(" + petListClient.get(index).getBreed().getNameBreed() + ")");
                 String editNameBreed = validate.checkStringNotNull();
 
                 System.out.println("Edit longevity: " + "(" + petListClient.get(index).getBreed().getLongevity() + ")");
@@ -205,7 +209,7 @@ public class Client {
                 System.out.println("Edit color: " + "(" + petListClient.get(index).getColor() + ")");
                 String editColor = validate.checkStringNotNull();
 
-                System.out.println("Edit name of breed: " + "(" + petListClient.get(index).getBreed().getNameBreed()+ ")");
+                System.out.println("Edit name of breed: " + "(" + petListClient.get(index).getBreed().getNameBreed() + ")");
                 String editNameBreed = validate.checkStringNotNull();
 
                 System.out.println("Edit longevity: " + "(" + petListClient.get(index).getBreed().getLongevity() + ")");
@@ -224,49 +228,51 @@ public class Client {
             }
         }
     }
-    public static void sortPetByAge (){
+
+    public static void sortPetByAge() {
         Collections.sort(petListClient);
-        for (Pet pet: petListClient
-             ) {
+        for (Pet pet : petListClient
+        ) {
             System.out.println(pet);
         }
     }
-    public static void sortPetByPrice () {
+
+    public static void sortPetByPrice() {
         Collections.sort(petListClient, new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
                 return (int) (o1.getPrice() - o2.getPrice());
             }
         });
-        for (Pet e: petListClient
-             ) {
+        for (Pet e : petListClient
+        ) {
             System.out.println(e);
         }
     }
 
-    public static void sortCatByRealMoney(){
+    public static void sortCatByRealMoney() {
         Collections.sort(petListClient, new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
                 return (int) (((Cat) o1).getRealMoney() - ((Cat) o2).getRealMoney());
             }
         });
-        for (Pet e: petListClient
-             ) {
+        for (Pet e : petListClient
+        ) {
             if (e instanceof Cat) {
                 System.out.println(e);
             }
         }
     }
 
-    public static void sortDogByRealMoney(){
+    public static void sortDogByRealMoney() {
         Collections.sort(petListClient, new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
                 return (int) (((Dog) o1).getRealMoney() - ((Dog) o2).getRealMoney());
             }
         });
-        for (Pet e: petListClient
+        for (Pet e : petListClient
         ) {
             if (e instanceof Dog) {
                 System.out.println(e);
@@ -274,14 +280,14 @@ public class Client {
         }
     }
 
-    public static void sortMouseByRealMoney(){
+    public static void sortMouseByRealMoney() {
         Collections.sort(petListClient, new Comparator<Pet>() {
             @Override
             public int compare(Pet o1, Pet o2) {
                 return (int) (((Mouse) o1).getRealMoney() - ((Mouse) o2).getRealMoney());
             }
         });
-        for (Pet e: petListClient
+        for (Pet e : petListClient
         ) {
             if (e instanceof Mouse) {
                 System.out.println(e);
@@ -289,10 +295,49 @@ public class Client {
         }
     }
 
-    public static void removePetByIndex () {
+    public static void removePetByIndex() {
         System.out.println("Input Pet's id need remove");
         String id = validate.checkStringNotNull();
         int index = PetManager.getPetById(id);
         PetManager.deletePet(index);
+    }
+
+    public static Bill createNewBill() {
+        System.out.println("Input bill's id");
+        String idBill = validate.checkStringNotNull();
+
+        System.out.println("Input customer's id");
+        String idCustomer = validate.checkStringNotNull();
+
+        System.out.println("Input customer's name");
+        String nameCustomer = validate.checkStringNotNull();
+
+        System.out.println("Input customer's phone");
+        String phoneCustomer = validate.checkStringNotNull();
+
+        System.out.println("Input customer's address");
+        String addressCustomer = validate.checkStringNotNull();
+
+        Customer newCustomer = new Customer(idCustomer, nameCustomer, phoneCustomer, addressCustomer);
+        CustomerManager.addNewCustomer(newCustomer);
+
+        System.out.println("Input quantity:");
+        int quantity = validate.checkInt();
+
+        System.out.println("Input pet's id");
+        String idPet = validate.checkStringNotNull();
+        int index = PetManager.getPetById(idPet);
+
+        String namePet = "";
+            for (Pet e : petListClient
+                    ) {
+                if(e.getId().equals(idPet)){
+                    namePet = e.getName();
+                    break;
+                }
+            }
+            Pet e = petListClient.get(index);
+            Bill bill = new Bill(idBill, quantity, e, newCustomer);
+            return bill;
     }
 }
