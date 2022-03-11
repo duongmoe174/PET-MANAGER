@@ -51,6 +51,17 @@ public class Bill implements Serializable {
         double total = pet.getPrice() * quantity;
         return total;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id='" + id + '\'' +
+                ", quantity=" + quantity +
+                ", pet=" + pet.getName()+
+                ", customer=" + customer.getName() +
+                ", toltalPrice=" + getTotalPrice() +
+                '}';
+    }
 }
 
 
