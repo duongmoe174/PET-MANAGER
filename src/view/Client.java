@@ -1,5 +1,6 @@
 package view;
 
+import controller.BillManager;
 import controller.CustomerManager;
 import controller.PetManager;
 import controller.Validate;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class Client {
     private static List<Pet> petListClient = PetManager.petList;
     private static List<Customer> customerListClient = CustomerManager.customerList;
+    private static List<Bill> billListClient = BillManager.billList;
 
     private static Validate validate = new Validate();
 
@@ -27,6 +29,9 @@ public class Client {
             System.out.println("3. Edit Pet");
             System.out.println("4. Sort Pet");
             System.out.println("5. Remove Pet");
+            System.out.println("6. Add new bill");
+            System.out.println("7. Show bill");
+            System.out.println("8. Show customer");
             System.out.println("0. Exit");
             choiceMain = inputChoiceMain.nextInt();
             switch (choiceMain) {
@@ -77,6 +82,14 @@ public class Client {
                     removePetByIndex();
                     break;
                 case 6:
+                    addNewBill();
+                    break;
+                case 7:
+                    showBill();
+                    break;
+                case 8:
+                    showCustomer();
+                    break;
                 case 0:
                     System.exit(0);
                 default:
@@ -90,6 +103,25 @@ public class Client {
         ) {
             System.out.println(pet);
         }
+    }
+
+    public static void showBill (){
+        for (Bill bill: billListClient
+             ) {
+            System.out.println(bill);
+        }
+    }
+
+    public static void showCustomer() {
+        for (Customer c: customerListClient
+             ) {
+            System.out.println(c);
+        }
+    }
+
+    public static void addNewBill() {
+        Bill bill = createNewBill();
+        BillManager.addNewBill(bill);
     }
 
     public static void addNewPet() {
@@ -328,16 +360,16 @@ public class Client {
         String idPet = validate.checkStringNotNull();
         int index = PetManager.getPetById(idPet);
 
-        String namePet = "";
-            for (Pet e : petListClient
-                    ) {
-                if(e.getId().equals(idPet)){
-                    namePet = e.getName();
-                    break;
-                }
-            }
-            Pet e = petListClient.get(index);
-            Bill bill = new Bill(idBill, quantity, e, newCustomer);
-            return bill;
+//        String namePet = "";
+//        for (Pet e : petListClient
+//        ) {
+//            if (e.getId().equals(idPet)) {
+//                namePet = e.getName();
+//                break;
+//            }
+//        }
+        Pet e = petListClient.get(index);
+        Bill bill = new Bill(idBill, quantity, e, newCustomer);
+        return bill;
     }
 }

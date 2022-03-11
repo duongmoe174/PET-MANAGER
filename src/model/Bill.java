@@ -1,6 +1,8 @@
 package model;
 
-public class Bill {
+import java.io.Serializable;
+
+public class Bill implements Serializable {
     private String id;
     private int quantity;
     private Pet pet;
