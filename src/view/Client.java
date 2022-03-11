@@ -360,14 +360,6 @@ public class Client {
         String idPet = validate.checkStringNotNull();
         int index = PetManager.getPetById(idPet);
 
-//        String namePet = "";
-//        for (Pet e : petListClient
-//        ) {
-//            if (e.getId().equals(idPet)) {
-//                namePet = e.getName();
-//                break;
-//            }
-//        }
         Pet e = petListClient.get(index);
         Bill bill = new Bill(idBill, quantity, e, newCustomer);
         return bill;
