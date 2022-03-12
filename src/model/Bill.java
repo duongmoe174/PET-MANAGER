@@ -1,18 +1,35 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Bill implements Serializable {
     private String id;
-    private int quantity;
-    private Pet pet;
     private Customer customer;
+    private ArrayList<Pet> pets;
+    private double totalOfBill;
 
-    public Bill(String id, int quantity, Pet pet, Customer customer) {
+    public Bill(String id, Customer customer, ArrayList<Pet> pets, double totalOfBill) {
         this.id = id;
-        this.quantity = quantity;
-        this.pet = pet;
         this.customer = customer;
+        this.pets = pets;
+        this.totalOfBill = totalOfBill;
+    }
+
+    public ArrayList<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(ArrayList<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public double getTotalOfBill() {
+        return totalOfBill;
+    }
+
+    public void setTotalOfBill(double totalOfBill) {
+        this.totalOfBill = totalOfBill;
     }
 
     public String getId() {
@@ -23,22 +40,6 @@ public class Bill implements Serializable {
         this.id = id;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -47,20 +48,16 @@ public class Bill implements Serializable {
         this.customer = customer;
     }
 
-    public double getTotalPrice () {
-        double total = pet.getPrice() * quantity;
-        return total;
-    }
-
     @Override
     public String toString() {
-        return "Bill{" +
-                "id='" + id + '\'' +
-                ", quantity=" + quantity +
-                ", pet=" + pet.getName()+
-                ", customer=" + customer.getName() +
-                ", toltalPrice=" + getTotalPrice() +
-                '}';
+        String result = "Bill id: " + id + "\n" +
+                "Customer: " + customer + "\n" +
+                "Total Price: " + totalOfBill + "\n" +
+                "Name of pets: ";
+        for (int i = 0; i < pets.size(); i++) {
+            result += pets.get(i).getName() + " at id " + pets.get(i).getId() + "    ";
+        }
+        return result;
     }
 }
 

@@ -7,10 +7,7 @@ import controller.Validate;
 import model.*;
 
 import java.sql.SQLOutput;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Client {
     private static List<Pet> petListClient = PetManager.petList;
@@ -105,16 +102,16 @@ public class Client {
         }
     }
 
-    public static void showBill (){
-        for (Bill bill: billListClient
-             ) {
+    public static void showBill() {
+        for (Bill bill : billListClient
+        ) {
             System.out.println(bill);
         }
     }
 
     public static void showCustomer() {
-        for (Customer c: customerListClient
-             ) {
+        for (Customer c : customerListClient
+        ) {
             System.out.println(c);
         }
     }
@@ -353,15 +350,30 @@ public class Client {
         Customer newCustomer = new Customer(idCustomer, nameCustomer, phoneCustomer, addressCustomer);
         CustomerManager.addNewCustomer(newCustomer);
 
-        System.out.println("Input quantity:");
-        int quantity = validate.checkInt();
+        Scanner inputNumberPet = new Scanner(System.in);
+        System.out.println("Input number type pet you need:");
+        int number = inputNumberPet.nextInt();
 
-        System.out.println("Input pet's id");
-        String idPet = validate.checkStringNotNull();
-        int index = PetManager.getPetById(idPet);
 
-        Pet e = petListClient.get(index);
-        Bill bill = new Bill(idBill, quantity, e, newCustomer);
+        double sum = 0;
+        Bill bill = null;
+        ArrayList<Pet> billPetList = new ArrayList<>();
+        for (int i = 0; i < number; i++) {
+            System.out.println("Input id Pet of " + (i + 1));
+            String idPet = validate.checkStringNotNull();
+            int index = PetManager.getPetById(idPet);
+
+            System.out.println("Input quantity:");
+            int quantity = validate.checkInt();
+
+            Pet pet = petListClient.get(index);
+            billPetList.add(pet);
+
+            System.out.println("Price: " + pet.getPrice());
+            sum += quantity * petListClient.get(index).getPrice();
+
+            bill = new Bill(idBill, newCustomer,billPetList, sum);
+        }
         return bill;
     }
 }
