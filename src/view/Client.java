@@ -29,6 +29,7 @@ public class Client {
             System.out.println("6. Add new bill");
             System.out.println("7. Show bill");
             System.out.println("8. Show customer");
+            System.out.println("9. Search Pet");
             System.out.println("0. Exit");
             choiceMain = inputChoiceMain.nextInt();
             switch (choiceMain) {
@@ -86,6 +87,9 @@ public class Client {
                     break;
                 case 8:
                     showCustomer();
+                    break;
+                case 9:
+                    searchPet();
                     break;
                 case 0:
                     System.exit(0);
@@ -369,11 +373,29 @@ public class Client {
             Pet pet = petListClient.get(index);
             billPetList.add(pet);
 
-            System.out.println("Price: " + pet.getPrice());
-            sum += quantity * petListClient.get(index).getPrice();
+            for (Pet e : petListClient
+                 ) {
+                if(e instanceof Cat) {
+                    sum += quantity *  ((Cat) e).getRealMoney();
+                }
+                if(e instanceof Dog) {
+                    sum += quantity * ((Dog) e).getRealMoney();
+                }
+            }
 
             bill = new Bill(idBill, newCustomer,billPetList, sum);
         }
         return bill;
+    }
+
+    public static void searchPet () {
+        System.out.println("Input Pet's name");
+        String namePet = validate.checkStringNotNull();
+        int index = PetManager.getPetByName(namePet);
+        if (index == -1) {
+            System.out.println("Can't find this pet!");
+        } else {
+            System.out.println(petListClient.get(index));
+        }
     }
 }

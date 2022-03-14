@@ -46,4 +46,12 @@ public class PetManager {
             e.printStackTrace();
         }
     }
+
+    public static int getPetByName(String petName) {
+        for (int i = 0; i < petList.size(); i++) {
+            if(petName.equals(petList.get(i).getName()))
+                return i;
+        }
+        return -1;
+    }
 }
