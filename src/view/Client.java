@@ -17,18 +17,8 @@ public class Client {
     public static void main(String[] args) {
         int choiceMain = -1;
         Scanner inputChoiceMain = new Scanner(System.in);
+        showMenu();
         while (choiceMain != 0) {
-            System.out.println("Menu");
-            System.out.println("1. Add new pet");
-            System.out.println("2. Show all pet");
-            System.out.println("3. Edit Pet");
-            System.out.println("4. Sort Pet");
-            System.out.println("5. Remove Pet");
-            System.out.println("6. Add new bill");
-            System.out.println("7. Show bill");
-            System.out.println("8. Show customer");
-            System.out.println("9. Search Pet");
-            System.out.println("0. Exit");
             choiceMain = inputChoiceMain.nextInt();
             switch (choiceMain) {
                 case 1:
@@ -89,12 +79,29 @@ public class Client {
                 case 9:
                     searchPet();
                     break;
+                case -9:
+                    showMenu();
+                    break;
                 case 0:
                     System.exit(0);
                 default:
                     System.err.println("Please let's choose one! ");
             }
         }
+    }
+    public static void showMenu() {
+        System.out.println("Menu");
+        System.out.println("1. Add new pet");
+        System.out.println("2. Show all pet");
+        System.out.println("3. Edit Pet");
+        System.out.println("4. Sort Pet");
+        System.out.println("5. Remove Pet");
+        System.out.println("6. Add new bill");
+        System.out.println("7. Show bill");
+        System.out.println("8. Show customer");
+        System.out.println("9. Search Pet");
+        System.out.println("Input '-9' to show menu");
+        System.out.println("0. Exit");
     }
 
     public static void showAllPet() {
