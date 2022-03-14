@@ -107,7 +107,10 @@ public class PetFactory {
 
     public static Mouse createNewMouse() {
         System.out.println("Input id:");
-        String id = validate.checkStringNotNull();
+        String id;
+        do {
+            id = validate.checkStringNotNull();
+        } while (!checkId(id));
 
         System.out.println("Input name:");
         String name = validate.checkStringNotNull();
@@ -140,6 +143,15 @@ public class PetFactory {
 
         Mouse mouse = new Mouse(id, name, age, gender, weight, color, breed, price, size);
         return mouse;
+    }
+
+    public static boolean checkId (String id){
+        for (int i = 0; i < petFactoryList.size(); i++) {
+            if (id.equals(petFactoryList.get(i).getId())){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

@@ -388,12 +388,15 @@ public class Client {
 
     public static void searchPet () {
         System.out.println("Input Pet's name");
-        String namePet = validate.checkStringNotNull();
-        int index = PetManager.getPetByName(namePet);
-        if (index == -1) {
-            System.out.println("Can't find this pet!");
-        } else {
-            System.out.println(petListClient.get(index));
+        while (true) {
+            String namePet = validate.checkStringNotNull();
+            int index = PetManager.getPetByName(namePet);
+            if (index == -1) {
+                System.err.println("Can't find this pet! Input again!");
+            } else {
+                System.out.println(petListClient.get(index));
+                break;
+            }
         }
     }
 }
