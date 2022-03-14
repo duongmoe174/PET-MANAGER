@@ -1,12 +1,10 @@
 package model;
 
-import controller.Validate;
+import view.Validate;
 import storage.IPetData;
 import storage.PetFromBinaryFile;
-import view.Client;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PetFactory {
     private static Validate validate = new Validate();

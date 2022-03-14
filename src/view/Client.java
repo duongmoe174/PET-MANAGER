@@ -3,10 +3,8 @@ package view;
 import controller.BillManager;
 import controller.CustomerManager;
 import controller.PetManager;
-import controller.Validate;
 import model.*;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Client {
