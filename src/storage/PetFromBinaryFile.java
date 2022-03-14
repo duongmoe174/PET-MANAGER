@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class PetFromBinaryFile implements IPetData {
     @Override
     public ArrayList<Pet> readfile() {
-        File file = new File("pet.data");
+        File file = new File("FileData/pet.data");
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -32,7 +32,7 @@ public class PetFromBinaryFile implements IPetData {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream("pet.data");
+            fileOutputStream = new FileOutputStream("FileData/pet.data");
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(petList);
         } catch (IOException e) {

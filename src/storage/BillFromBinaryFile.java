@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class BillFromBinaryFile implements IBillData{
     @Override
     public ArrayList<Bill> readFile() {
-        File file = new File("Bill.data");
+        File file = new File("FileData/Bill.data");
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -32,7 +32,7 @@ public class BillFromBinaryFile implements IBillData{
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream("Bill.data");
+            fileOutputStream = new FileOutputStream("FileData/Bill.data");
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(billList);
         }

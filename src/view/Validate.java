@@ -48,7 +48,7 @@ public class Validate {
             if(!str.trim().equals("")) {
                 break;
             } else {
-                System.err.println("String is empty!");
+                System.err.println("String is empty! Input again!");
             }
         }
         return str;

@@ -5,6 +5,7 @@ import storage.IPetData;
 import storage.PetFromBinaryFile;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PetFactory {
     private static Validate validate = new Validate();
@@ -70,8 +71,12 @@ public class PetFactory {
     }
 
     public static Dog createNewDog() {
-        System.out.println("Input id:");
-        String id = validate.checkStringNotNull();
+        String id;
+        do {
+
+            System.out.println("Input id");
+            id = validate.checkStringNotNull();
+        }while (check(id));
 
         System.out.println("Input name:");
         String name = validate.checkStringNotNull();
@@ -106,11 +111,8 @@ public class PetFactory {
     }
 
     public static Mouse createNewMouse() {
-        System.out.println("Input id:");
-        String id;
-        do {
-            id = validate.checkStringNotNull();
-        } while (!checkId(id));
+        System.out.println("Input id: ");
+        String id = validate.checkStringNotNull();
 
         System.out.println("Input name:");
         String name = validate.checkStringNotNull();
@@ -145,9 +147,10 @@ public class PetFactory {
         return mouse;
     }
 
-    public static boolean checkId (String id){
+    public static boolean check (String id){
         for (int i = 0; i < petFactoryList.size(); i++) {
             if (id.equals(petFactoryList.get(i).getId())){
+                System.err.println("id already exits! Try again");
                 return true;
             }
         }
