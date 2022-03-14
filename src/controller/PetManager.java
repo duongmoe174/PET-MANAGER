@@ -1,7 +1,6 @@
 package controller;
 
 import model.Pet;
-import model.PetFactory;
 import storage.IPetData;
 import storage.PetFromBinaryFile;
 
@@ -9,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class PetManager {
-    public static IPetData petData = PetFactory.petFactoryData;
-    public static ArrayList<Pet> petList = PetFactory.petFactoryList;
+    public static IPetData petData = new PetFromBinaryFile();
+    public static ArrayList<Pet> petList = petData.readfile();
 
     public static void addNewPet(Pet pet) {
         petList.add(pet);

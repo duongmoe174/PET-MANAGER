@@ -5,7 +5,6 @@ import storage.IPetData;
 import storage.PetFromBinaryFile;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PetFactory {
     private static Validate validate = new Validate();
@@ -32,8 +31,7 @@ public class PetFactory {
     }
 
     public static Cat createNewCat() {
-        System.out.println("Input id:");
-        String id = validate.checkStringNotNull();
+        String id = checkId();
 
         System.out.println("Input name:");
         String name = validate.checkStringNotNull();
@@ -71,12 +69,7 @@ public class PetFactory {
     }
 
     public static Dog createNewDog() {
-        String id;
-        do {
-
-            System.out.println("Input id");
-            id = validate.checkStringNotNull();
-        }while (check(id));
+        String id = checkId();
 
         System.out.println("Input name:");
         String name = validate.checkStringNotNull();
@@ -111,8 +104,7 @@ public class PetFactory {
     }
 
     public static Mouse createNewMouse() {
-        System.out.println("Input id: ");
-        String id = validate.checkStringNotNull();
+        String id = checkId();
 
         System.out.println("Input name:");
         String name = validate.checkStringNotNull();
@@ -150,11 +142,19 @@ public class PetFactory {
     public static boolean check (String id){
         for (int i = 0; i < petFactoryList.size(); i++) {
             if (id.equals(petFactoryList.get(i).getId())){
-                System.err.println("id already exits! Try again");
                 return true;
             }
         }
         return false;
+    }
+
+    public static String checkId(){
+        String id;
+        do {
+            System.out.println("Input id");
+            id = validate.checkStringNotNull();
+        } while (check(id));
+        return id;
     }
 }
 
